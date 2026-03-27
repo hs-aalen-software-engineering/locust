@@ -1,3 +1,13 @@
+> **This is NOT the official Locust repository.**
+>
+> This is a modified copy of [locustio/locust](https://github.com/locustio/locust), imported on 2026-03-28 for **teaching purposes** in the course "AI-Supported Software Development" at [Hochschule Aalen](https://www.hs-aalen.de/). It is not affiliated with or endorsed by the Locust project or its maintainers.
+>
+> The original Locust project can be found at: **https://github.com/locustio/locust**
+>
+> This copy may contain modifications (added files, changed code) made for educational exercises. It should not be used as a reference for the actual Locust software. If you are looking for the real Locust load testing tool, please visit the link above.
+
+---
+
 # Locust
 
 [![PyPI](https://img.shields.io/pypi/v/locust.svg)](https://pypi.org/project/locust/)
