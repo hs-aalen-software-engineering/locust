@@ -135,6 +135,19 @@ class TestMyFeature(LocustTestCase):
 
 **Test utilities** in `locust/test/util.py`: `temporary_file()`, `patch_env()`, `get_free_tcp_port()`, `mock_locustfile()`.
 
+## Benchmarks
+
+Run `make benchmark` (or `uv run python benchmarks/run_benchmarks.py`) to measure
+ops/sec for refactoring exercise targets. Students must include before/after
+numbers in refactoring PRs.
+
+| Benchmark | Package | What it measures |
+| --------- | ------- | ---------------- |
+| `setup_logging()` | A (Utilities) | Logging config dict construction |
+| `StatsEntry.log()` | B (Statistics) | Per-request stats recording (hot path) |
+| `StatsEntry.extend()` | B (Statistics) | Stats entry merging |
+| `filter_tasks_by_tags()` | C (User Model) | Task filtering by tag sets |
+
 ## Git Workflow
 
 1. Branch from `master`: `git checkout -b feature/<short-description>` (or `fix/`, `refactor/`)

@@ -238,6 +238,26 @@ uv run mypy locust/
 uv run ruff check . && uv run ruff format --check && uv run mypy locust/
 ```
 
+### Benchmarks
+
+```bash
+# Run performance benchmarks for refactoring exercise targets
+make benchmark
+# or:
+uv run python benchmarks/run_benchmarks.py
+```
+
+The benchmark measures ops/sec for the refactoring targets in each exercise
+package and the stats hot path. Students must include before/after numbers in
+refactoring PRs to confirm no performance regressions.
+
+| Benchmark | Package | What it measures |
+| --------- | ------- | ---------------- |
+| `setup_logging()` | A (Utilities) | Logging config dict construction |
+| `StatsEntry.log()` | B (Statistics) | Per-request stats recording (hot path) |
+| `StatsEntry.extend()` | B (Statistics) | Stats entry merging |
+| `filter_tasks_by_tags()` | C (User Model) | Task filtering by tag sets |
+
 ### Frontend
 
 ```bash
