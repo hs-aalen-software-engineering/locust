@@ -38,5 +38,8 @@ serve_docs:
 	echo "Serving docs at http://localhost:80"
 	python -m http.server 80 -d docs/_build
 
+benchmark:
+	uv run python benchmarks/run_benchmarks.py
+
 changelog:
 	@echo "Not supported any more. Run ./generate_changelog.py <version_number> instead!"
