@@ -9,7 +9,6 @@ Produces stable, copy-pasteable output for PR descriptions.
 
 from __future__ import annotations
 
-import copy
 import statistics
 import time
 
@@ -47,11 +46,12 @@ def _fmt(ops):
 # Package A: log.py — setup_logging()
 # ---------------------------------------------------------------------------
 
+
 def bench_setup_logging():
+    from locust.log import setup_logging
+
     import logging
     import logging.config
-
-    from locust.log import setup_logging
 
     def run():
         setup_logging("WARNING")
@@ -65,6 +65,7 @@ def bench_setup_logging():
 # ---------------------------------------------------------------------------
 # Package B: stats.py — StatsEntry.log() and StatsEntry.extend()
 # ---------------------------------------------------------------------------
+
 
 def bench_stats_log():
     from locust.stats import RequestStats
@@ -110,13 +111,31 @@ def bench_stats_extend():
 # Package C: user/task.py — filter_tasks_by_tags()
 # ---------------------------------------------------------------------------
 
+
 def bench_filter_tasks_by_tags():
-    from locust.user.task import TaskSet, filter_tasks_by_tags, tag, task
+    from locust.user.task import TaskSet, filter_tasks_by_tags
 
     tag_names = [
-        "api", "web", "auth", "db", "cache", "search", "upload",
-        "download", "admin", "public", "slow", "fast", "critical",
-        "smoke", "regression", "integration", "unit", "e2e", "perf", "security",
+        "api",
+        "web",
+        "auth",
+        "db",
+        "cache",
+        "search",
+        "upload",
+        "download",
+        "admin",
+        "public",
+        "slow",
+        "fast",
+        "critical",
+        "smoke",
+        "regression",
+        "integration",
+        "unit",
+        "e2e",
+        "perf",
+        "security",
     ]
 
     # Build a TaskSet with ~20 tagged tasks
@@ -127,6 +146,7 @@ def bench_filter_tasks_by_tags():
         def make_task(n):
             def the_task(self):
                 pass
+
             the_task.__name__ = fn_name
             the_task.__qualname__ = fn_name
             the_task.locust_task_weight = 1
@@ -153,6 +173,7 @@ def bench_filter_tasks_by_tags():
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
+
 
 def main():
     print()
