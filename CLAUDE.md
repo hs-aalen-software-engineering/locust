@@ -229,13 +229,13 @@ pytest -x locust/test
 
 ```bash
 # Lint and auto-format (Ruff)
-hatch run lint:format
+uv run ruff check . && uv run ruff format --check
 
 # Type checking (mypy)
-hatch run lint:types
+uv run mypy locust/
 
 # Run both
-hatch run lint:all
+uv run ruff check . && uv run ruff format --check && uv run mypy locust/
 ```
 
 ### Frontend
@@ -357,7 +357,7 @@ this workflow for all changes:
 3. **Validate** before pushing:
    ```bash
    make test
-   hatch run lint:format
+   uv run ruff check . && uv run ruff format --check
    ```
 4. **Push and open a PR** against `master`:
    ```bash

@@ -9,7 +9,7 @@ are disabled. Branch protection is on `master` (1 review required).
 - Be direct and technically accurate. If something is wrong or could be better, say so constructively.
 - Understand existing code before proposing changes. Locust has intentional design decisions — look at how similar things are already done before suggesting a different approach.
 - Keep changes minimal. One logical change per commit, one purpose per PR. No drive-by refactors.
-- Follow the workflow: research the relevant modules/tests, plan the approach, implement focused changes, then validate with `make test` and `hatch run lint:format`.
+- Follow the workflow: research the relevant modules/tests, plan the approach, implement focused changes, then validate with `make test` and `uv run ruff check . && uv run ruff format --check`.
 
 ## Project Overview
 
@@ -69,7 +69,7 @@ web UI polls `/api/stats`.
 ## Coding Conventions
 
 - **Line length**: 120 characters
-- **Formatter/linter**: Ruff (handles both). Run `hatch run lint:format`
+- **Formatter/linter**: Ruff (handles both). Run `uv run ruff check . && uv run ruff format --check`
 - **Import order**: `locust` imports MUST come first (before stdlib) because `__init__.py` does gevent monkey-patching. Ruff isort is configured for this.
 - **Type checking**: mypy, `python_version = "3.10"`, `ignore_missing_imports = true`
 - **Tests**: pytest with `unittest.TestCase` style. Extend `LocustTestCase` or `WebserverTestCase` from `locust/test/testcases.py`. No conftest.py — tests use base classes for setup/teardown.
@@ -139,7 +139,7 @@ class TestMyFeature(LocustTestCase):
 
 1. Branch from `master`: `git checkout -b feature/<short-description>` (or `fix/`, `refactor/`)
 2. Make focused, atomic commits. Imperative mood ("Add retry logic", not "Added").
-3. Validate: `make test && hatch run lint:format`
+3. Validate: `make test && uv run ruff check . && uv run ruff format --check`
 4. Push and open a PR against `master`. PR title under 70 chars, imperative. Description explains *what* and *why*.
 5. Get 1 review (required by branch protection). No force pushes.
 
